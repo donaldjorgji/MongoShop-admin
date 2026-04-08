@@ -12,7 +12,7 @@ const Navbar = () => {
     localStorage.removeItem('user'); // nese ke ruajtur user gjithashtu
 
     // Ridrejto tek faqja e user
-    window.location.href = 'http://localhost:3000';
+    window.location.href = import.meta.env.VITE_APP_URL;
   }
 
   return (
