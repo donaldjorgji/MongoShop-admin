@@ -84,47 +84,51 @@ const AddProduct = () => {
     let formData = new FormData();
     formData.append('product', image);
 
-    await fetch('http://localhost:4001/upload', {
+    await fetch(`${import.meta.env.VITE_API_URL}/upload`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
       },
       body: formData,
-    }).then((resp) => resp.json()).then((data) => { responseData = data });
+    })
+      .then((resp) => resp.json())
+      .then((data) => { responseData = data });
 
     if (responseData.success) {
 
       product.image = responseData.image_url;
 
-      await fetch('http://localhost:4001/addproduct', {
+      await fetch(`${import.meta.env.VITE_API_URL}/addproduct`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(product),
-      }).then((resp) => resp.json()).then((data) => {
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
 
-        setLoading(false);
+          setLoading(false);
 
-        if (data.success) {
-          showAlert("success", "Produkti u shtua me sukses!");
+          if (data.success) {
+            showAlert("success", "Produkti u shtua me sukses!");
 
-          setproductDetails({
-            name: "",
-            image: "",
-            category: "femra",
-            new_price: "",
-            old_price: ""
-          });
+            setproductDetails({
+              name: "",
+              image: "",
+              category: "femra",
+              new_price: "",
+              old_price: ""
+            });
 
-          setImage(false);
-          setErrors({});
-        } else {
-          showAlert("error", "Shtimi dështoi!");
-        }
+            setImage(false);
+            setErrors({});
+          } else {
+            showAlert("error", "Shtimi dështoi!");
+          }
 
-      });
+        });
 
     } else {
       setLoading(false);

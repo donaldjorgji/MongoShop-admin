@@ -7,7 +7,7 @@ const ListProduct = () => {
   const [allproducts, setAllProducts] = useState([]);
 
   const fetchInfo = async () => {
-    await fetch('http://localhost:4001/allproducts')
+    await fetch(`${import.meta.env.VITE_API_URL}/allproducts`)
       .then((resp) => resp.json())
       .then((data) => { setAllProducts(data) });
   }
@@ -16,17 +16,19 @@ const ListProduct = () => {
     fetchInfo();
   }, []);
 
- const remove_product = async(id)=>{
-  await fetch ('http://localhost:4001/removeproduct',{
-      method:'POST',
-      headers:{
-        Accept:'application/json',
-        'Content-Type':'application/json',
+  const remove_product = async (id) => {
+    await fetch(`${import.meta.env.VITE_API_URL}/removeproduct`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-      body:JSON.stringify({id:id})
-  })
-  await fetchInfo();
-}
+      body: JSON.stringify({ id: id })
+    })
+
+    await fetchInfo();
+  }
+
   return (
     <div className="list-product">
       <h1>Lista e produkteve</h1>
@@ -44,17 +46,24 @@ const ListProduct = () => {
         <hr />
 
         {allproducts.map((product, index) => {
-          return<>
-          <div key={index} className='listproduct-format-main listproduct-format'>
-            <img src={product.image} alt="" className='listproduct-product-icon' />
-            <p>{product.name}</p>
-            <p>€{product.old_price}</p>
-            <p>€{product.new_price}</p>
-            <p>{product.category}</p>
-            <img onClick={()=>{remove_product(product.id)}}className='listproduct-remove-icon' src={cross_icon} alt="" />
-          </div>
-          <hr/>
-          </>
+          return (
+            <React.Fragment key={index}>
+              <div className='listproduct-format-main listproduct-format'>
+                <img src={product.image} alt="" className='listproduct-product-icon' />
+                <p>{product.name}</p>
+                <p>€{product.old_price}</p>
+                <p>€{product.new_price}</p>
+                <p>{product.category}</p>
+                <img
+                  onClick={() => { remove_product(product.id) }}
+                  className='listproduct-remove-icon'
+                  src={cross_icon}
+                  alt=""
+                />
+              </div>
+              <hr />
+            </React.Fragment>
+          )
         })}
 
       </div>
