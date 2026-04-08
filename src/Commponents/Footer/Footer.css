@@ -1,0 +1,129 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+
+  padding-top: 30px;
+
+  background: linear-gradient(180deg, #ffffff, #f9f9f9);
+  border-top: 1px solid #eee;
+}
+
+/* LOGO */
+.footer-logo {
+  display: flex;
+  flex-direction: row; /* 🔥 siguron një rresht */
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo img {
+  width: 45px;
+  height: auto;
+  display: block;
+}
+
+.footer-logo p {
+  margin: 0;
+  color: #2c2c2c;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* LINKS */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  gap: 30px;
+  color: #444;
+  font-size: 15px;
+}
+
+.footer-links li {
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* underline animation */
+.footer-links li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #6079ff;
+  transition: 0.3s;
+}
+
+.footer-links li:hover {
+  color: #6079ff;
+}
+
+.footer-links li:hover::after {
+  width: 100%;
+}
+
+/* SOCIAL ICONS */
+.footer-social-icon {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-icons-container {
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.footer-icons-container:hover {
+  background: #6079ff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(96, 121, 255, 0.2);
+}
+
+.footer-icons-container a {
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* COPYRIGHT */
+.footer-copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 14px;
+}
+
+.footer-copyright hr {
+  width: 80%;
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ccc, transparent);
+}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  .footer-links{
+    gap: 20px;
+    font-size: 14px;
+  }
+
+  .footer-logo p {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,73 @@
+<svg width="44" height="40" viewBox="0 0 34 31" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+    <!-- neon glow -->
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- soft shadow -->
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+
+    <!-- neon gradients -->
+    <linearGradient id="neonBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00eaff"/>
+      <stop offset="100%" stop-color="#0077ff"/>
+    </linearGradient>
+
+    <linearGradient id="neonPink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff4ecd"/>
+      <stop offset="100%" stop-color="#ff1744"/>
+    </linearGradient>
+
+    <linearGradient id="neonYellow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff176"/>
+      <stop offset="100%" stop-color="#ffb300"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    svg {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    svg:hover {
+      transform: scale(1.08);
+    }
+  </style>
+
+  <!-- glass base -->
+  <rect x="2" y="12" width="30" height="16" rx="6"
+        fill="rgba(255,255,255,0.08)"
+        stroke="rgba(255,255,255,0.2)"
+        stroke-width="1"
+        filter="url(#shadow)"/>
+
+  <!-- neon glow top line -->
+  <rect x="2" y="12" width="30" height="3" rx="2"
+        fill="url(#neonPink)"
+        filter="url(#neonGlow)"/>
+
+  <!-- neon body -->
+  <rect x="4" y="14" width="26" height="12" rx="4"
+        fill="url(#neonBlue)"
+        opacity="0.85"
+        filter="url(#neonGlow)"/>
+
+  <!-- top lid -->
+  <rect x="7" y="4" width="20" height="6" rx="4"
+        fill="url(#neonYellow)"
+        filter="url(#neonGlow)"/>
+
+  <!-- highlight glass -->
+  <ellipse cx="12" cy="18" rx="6" ry="3"
+           fill="rgba(255,255,255,0.25)"/>
+
+</svg>
